@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css"
+    integrity="sha512-EZLkOqwILORob+p0BXZc+Vm3RgJBOe1Iq/0fiI7r/wJgzOFZMlsqTa29UEl6v6U6gsV4uIpsNZoV32YZqrCRCQ=="
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+    crossorigin="anonymous" />
+  <title>Products</title>
+
+  <style>
+    a {
+      text-decoration: none;
+    }
+
+    .danger {
+      color: #ff4444
+    }
+
+    .warning {
+      color: #ffbb33
+    }
+  </style>
+</head>
+
+<body>
+  <h1>
+    Hello!
+  </h1>
+  <h4>
+    Here you can sell anything
+  </h4>
+  <a href="/users/logout">Logout</a>
+  <hr>
+  <form action="/products" method="POST">
+    <div class="row">
+      <div class="four columns">
+        <label for="name">What do you sell?</label>
+        <input class="u-full-width" name='name' type="text" placeholder="Enter a product name" id="name">
+      </div>
+      <div class="four columns">
+        <label for="price">How much you want?</label>
+        <input class="u-full-width" name='price' type="number" placeholder="Enter a price" id="price">
+      </div>
+      <div class="four columns">
+        <label for="category">Select category</label>
+        <select class="u-full-width" name='category' id="category">
+          <option value="Smartphone">Smartphone</option>
+          <option value="Notebook">Notebook</option>
+          <option value="Car">Car</option>
+        </select>
+      </div>
+    </div>
+    <label for="description">Description</label>
+    <textarea class="u-full-width" name='description' placeholder="I want to sell..." id="description"></textarea>
+    <input class="button-primary" type="submit" value="Add">
+  </form>
+
+  <ul>
+    <% if(messages.success_msg) { %>
+    <li><%= messages.success_msg %></li>
+    <% } %>
+  </ul>
+
+  <ul>
+    <% if(messages.error) { %>
+    <li><%= messages.error %></li>
+    <% } %>
+  </ul>
+  <hr>
+  <table class="u-full-width">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.map(product => { %>
+      <tr>
+        <td><%= product.category %> </td>
+        <td><%= product.name %> </td>
+        <td><%= product.price %><span>&#36;</span></td>
+        <td><%= product.description %> </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+
+</body>
+
+</html>
